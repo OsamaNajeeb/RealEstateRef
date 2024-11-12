@@ -6,6 +6,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import AccountType from './src/screens/AccountType';
 import TestScreen from './src/screens/TestScreen';
 import WestScreen from './src/screens/WestScreen';
+import OnBoardingScreenRE from './src/screens/OnBoardingScreenRE';
 
 const stuck = createNativeStackNavigator();
 
@@ -14,6 +15,10 @@ const App = () => {
     <>
       <NavigationContainer>
         <stuck.Navigator screenOptions={{headerShown: false}}>
+          <stuck.Screen
+            name={'onBSRealEstate'}
+            component={OnBoardingScreenRE}
+          />
           <stuck.Screen name={'splash'} component={SplashScreen} />
           <stuck.Screen name={'acctype'} component={AccountType} />
           <stuck.Screen name={'test'} component={TestScreen} />
