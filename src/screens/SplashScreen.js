@@ -3,7 +3,6 @@ import {View, Image} from 'react-native';
 import CustomHomeIcon from '../assets/svg/customhome';
 
 export default function SplashScreen({navigation}) {
-  // Redirect to 'acctype' screen after 2 seconds
   useEffect(() => {
     const timer = setTimeout(() => {
       navigation.replace('acctype');
