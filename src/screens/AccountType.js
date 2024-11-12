@@ -1,10 +1,23 @@
-import {View, Text, StatusBar, Linking} from 'react-native';
+import {View, Text, Alert, Linking} from 'react-native';
 import React, {useState} from 'react';
 import AcctypeRectBtn from '../assets/components/AcctypeRectBtn';
 import NextRectangleIcon from '../assets/svg/customrecicon';
 
-export default function AccountType() {
+export default function AccountType({navigation}) {
   const [activeButton, setActiveButton] = useState(null);
+
+  const handleNextPress = () => {
+    if (activeButton === 'Real Estate') {
+      navigation.navigate('test');
+    } else if (activeButton === 'Plumber') {
+      navigation.navigate('west');
+    } else {
+      Alert.alert(
+        'Selection Required',
+        'Please select a profession before proceeding.',
+      );
+    }
+  };
 
   return (
     <View style={{padding: 15, flex: 1}}>
@@ -51,7 +64,7 @@ export default function AccountType() {
             marginTop: 30,
             position: 'relative',
           }}>
-          <NextRectangleIcon />
+          <NextRectangleIcon onPress={handleNextPress} />
         </View>
         <View style={{marginTop: 20, padding: 10}}>
           <Text>
