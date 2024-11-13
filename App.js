@@ -1,31 +1,59 @@
-import {View, Text} from 'react-native';
-import React from 'react';
-import SplashScreen from './src/screens/SplashScreen';
+import React, {useEffect, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import SplashScreen from './src/screens/SplashScreen';
 import AccountType from './src/screens/AccountType';
 import TestScreen from './src/screens/TestScreen';
 import WestScreen from './src/screens/WestScreen';
 import OnBoardingScreenRE from './src/screens/OnBoardingScreenRE';
 
-const stuck = createNativeStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const App = () => {
+  const [isFirstLaunch, setIsFirstLaunch] = useState(null);
+
+  useEffect(() => {
+    const checkOnboarding = async () => {
+      try {
+        const value = await AsyncStorage.getItem('hasOnboarded');
+        if (value === null) {
+          setIsFirstLaunch(true);
+          await AsyncStorage.setItem('hasOnboarded', 'true');
+        } else {
+          setIsFirstLaunch(false);
+        }
+      } catch (error) {
+        console.error('Error checking onboarding status:', error);
+      }
+    };
+
+    checkOnboarding();
+  }, []);
+
+  // if (isFirstLaunch === null) {
+  //   return null;
+  // }
+
   return (
-    <>
-      <NavigationContainer>
-        <stuck.Navigator screenOptions={{headerShown: false}}>
-          <stuck.Screen
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name={'splash'} component={SplashScreen} />
+        <Stack.Screen
+          name={'acctype'}
+          component={AccountType}
+          initialParams={{isFirstLaunch}}
+        />
+        {isFirstLaunch && (
+          <Stack.Screen
             name={'onBSRealEstate'}
             component={OnBoardingScreenRE}
           />
-          <stuck.Screen name={'splash'} component={SplashScreen} />
-          <stuck.Screen name={'acctype'} component={AccountType} />
-          <stuck.Screen name={'test'} component={TestScreen} />
-          <stuck.Screen name={'west'} component={WestScreen} />
-        </stuck.Navigator>
-      </NavigationContainer>
-    </>
+        )}
+        <Stack.Screen name={'test'} component={TestScreen} />
+        <Stack.Screen name={'west'} component={WestScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 

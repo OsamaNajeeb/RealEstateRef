@@ -3,14 +3,31 @@ import React, {useState} from 'react';
 import AcctypeRectBtn from '../assets/components/AcctypeRectBtn';
 import NextRectangleIcon from '../assets/svg/customrecicon';
 
-export default function AccountType({navigation}) {
+export default function AccountType({navigation, route}) {
+  const {isFirstLaunch} = route.params; // Retrieve the parameter
   const [activeButton, setActiveButton] = useState(null);
 
   const handleNextPress = () => {
     if (activeButton === 'Real Estate') {
-      navigation.navigate('test');
+      if (isFirstLaunch) {
+        try {
+          navigation.replace('onBSRealEstate');
+        } catch (error) {
+          navigation.navigate('test');
+        }
+      } else {
+        navigation.navigate('test');
+      }
     } else if (activeButton === 'Plumber') {
-      navigation.navigate('west');
+      if (isFirstLaunch) {
+        try {
+          navigation.replace('onBSRealEstate');
+        } catch (error) {
+          navigation.navigate('west');
+        }
+      } else {
+        navigation.navigate('west');
+      }
     } else {
       Alert.alert(
         'Selection Required',
