@@ -20,21 +20,24 @@ const COLORS = {primary: '#282534', white: '#fff'};
 const slides = [
   {
     id: '1',
-    image: require('../assets/png/image1.png'),
-    title: 'Title One',
-    subtitle: 'SubHuman One',
+    image: require('../assets/png/slideone.png'),
+    title: 'You can refer another agent & retain part of your commission',
+    subtitle:
+      'Unable to help your client to buy/sell in another state? \nHence, loosing all of your commission?',
   },
   {
     id: '2',
-    image: require('../assets/png/splashlogo.png'),
-    title: 'Title Two',
-    subtitle: 'SubHuman Two',
+    image: require('../assets/png/slidetwo.png'),
+    title: 'Finding leads that are already taken',
+    subtitle:
+      'Here you get, Individual Genuine referral/leads from license agents ONLY.',
   },
   {
     id: '3',
-    image: require('../assets/png/splashlogo.png'),
-    title: 'Title Three',
-    subtitle: 'SubHuman Three',
+    image: require('../assets/png/slidethree.png'),
+    title: 'Get Instant Notification',
+    subtitle:
+      'No more wasting time looking for referrals.\nGet instant notification when a referral in available in your area.',
   },
 ];
 
@@ -43,7 +46,7 @@ const Slide = ({item}) => {
     <View style={{width, alignItems: 'center'}}>
       <Image
         source={item.image}
-        style={{height: '75%', width, resizeMode: 'contain'}}
+        style={{height: '75%', width: '75%', resizeMode: 'contain'}}
       />
       <Text
         style={{
@@ -51,10 +54,18 @@ const Slide = ({item}) => {
           fontWeight: 'bold',
           color: COLORS.primary,
           marginTop: 10,
+          textAlign: 'center',
         }}>
         {item.title}
       </Text>
-      <Text style={{fontSize: 16, color: COLORS.primary, marginTop: 10}}>
+      <Text
+        style={{
+          fontSize: 16,
+          color: COLORS.primary,
+          marginTop: 15,
+          paddingHorizontal: 15,
+          textAlign: 'center',
+        }}>
         {item.subtitle}
       </Text>
     </View>
@@ -134,7 +145,7 @@ const OnBoardingScreenRE = ({navigation}) => {
         onMomentumScrollEnd={updateCurrentSlideIndex}
         pagingEnabled
         data={slides}
-        contentContainerStyle={{height: height * 0.75}}
+        contentContainerStyle={{height: height * 0.65}}
         horizontal
         showsHorizontalScrollIndicator={false}
         renderItem={({item}) => <Slide item={item} />}
