@@ -4,7 +4,7 @@ import AcctypeRectBtn from '../assets/components/AcctypeRectBtn';
 import NextRectangleIcon from '../assets/svg/customrecicon';
 
 export default function AccountType({navigation, route}) {
-  const {isFirstLaunch} = route.params; // Retrieve the parameter
+  const {isFirstLaunch} = route.params;
   const [activeButton, setActiveButton] = useState(null);
 
   const handleNextPress = () => {

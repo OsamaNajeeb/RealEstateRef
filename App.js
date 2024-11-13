@@ -7,6 +7,7 @@ import AccountType from './src/screens/AccountType';
 import TestScreen from './src/screens/TestScreen';
 import WestScreen from './src/screens/WestScreen';
 import OnBoardingScreenRE from './src/screens/OnBoardingScreenRE';
+import LoginScreenRE from './src/screens/LoginScreenRE';
 
 const Stack = createNativeStackNavigator();
 
@@ -38,6 +39,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name={'loginRE'} component={LoginScreenRE} />
         <Stack.Screen name={'splash'} component={SplashScreen} />
         <Stack.Screen
           name={'acctype'}
