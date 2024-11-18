@@ -5,7 +5,7 @@ import Svg, {Rect, Defs, LinearGradient, Stop, Text} from 'react-native-svg';
 const LoginRectangleBtn = ({onPress}) => (
   <TouchableOpacity onPress={onPress} activeOpacity={0.7}>
     <Svg
-      width={333}
+      width="100%"
       height={50}
       viewBox="0 0 333 50"
       fill="none"
