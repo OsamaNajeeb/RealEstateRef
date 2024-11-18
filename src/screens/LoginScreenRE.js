@@ -33,7 +33,7 @@ export default function LoginScreenRE() {
             style={{
               color: '#B5B5B5',
               fontSize: 13,
-              fontFamily: 'Poppins-Bold',
+              fontFamily: 'Poppins-ExtaBold',
             }}>
             Enter your creditenial below:
           </Text>
@@ -75,7 +75,9 @@ export default function LoginScreenRE() {
             <LoginRectangleBtn />
           </View>
           <View style={{justifyContent: 'center', marginTop: 30}}>
-            <Text style={{textAlign: 'center'}}>Or login with:</Text>
+            <Text style={{textAlign: 'center', fontFamily: 'Poppins-Regular'}}>
+              Or login with:
+            </Text>
           </View>
           <View>
             <TouchableOpacity>
@@ -115,7 +117,12 @@ export default function LoginScreenRE() {
         </View>
       </ScrollView>
       <View style={{padding: 40}}>
-        <Text style={{textAlign: 'center'}}>
+        <Text
+          style={{
+            textAlign: 'center',
+            color: '#B3B3B3',
+            fontFamily: 'Poppins-Medium',
+          }}>
           Not our member yet?{' '}
           <Text
             style={{color: 'blue'}}
