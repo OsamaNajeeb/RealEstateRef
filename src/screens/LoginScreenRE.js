@@ -20,17 +20,37 @@ import auth from '@react-native-firebase/auth';
 export default function LoginScreenRE() {
   const [eMail, setEmail] = useState('');
   const [password, setPass] = useState('');
+  const [emailTouched, setEmailTouched] = useState(false);
+  const [passwordTouched, setPasswordTouched] = useState(false);
+
+  const validateEmail = email => {
+    // Regex checks for a valid email format with a domain (e.g., ".com")
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePassword = password => {
+    return password.length >= 6;
+  };
+
+  const handleEmailChange = email => {
+    setEmail(email);
+  };
+
+  const handlePasswordChange = pass => {
+    setPass(pass);
+  };
 
   const onLogIn = () => {
+    if (!validateEmail(eMail) || !validatePassword(password)) {
+      Alert.alert('Error', 'Please enter a valid email and password.');
+      return;
+    }
+
     auth()
       .signInWithEmailAndPassword(eMail, password)
       .then(() => {
-        Alert.alert('Sucess', 'Login Sucessfully', [
-          {
-            text: 'OK',
-            // onPress: () => navigation.navigate('o Algo')
-          },
-        ]);
+        Alert.alert('Success', 'Login Successfully', [{text: 'OK'}]);
       })
       .catch(error => {
         if (error.code === 'auth/email-already-in-use') {
@@ -63,27 +83,65 @@ export default function LoginScreenRE() {
               fontSize: 13,
               fontFamily: 'Poppins-ExtaBold',
             }}>
-            Enter your creditenial below:
+            Enter your credentials below:
           </Text>
         </View>
         <View style={{justifyContent: 'center', marginTop: 30}}>
-          <View style={[textFieldStyle.textF]}>
-            <EnvelopeIcon style={textFieldStyle.icon} />
+          <View
+            style={[
+              textFieldStyle.textF,
+              {
+                borderColor: emailTouched
+                  ? validateEmail(eMail)
+                    ? 'green'
+                    : 'red'
+                  : '#D0D0D0',
+              },
+            ]}>
+            <EnvelopeIcon
+              color={
+                emailTouched
+                  ? validateEmail(eMail)
+                    ? 'green'
+                    : 'red'
+                  : '#D0D0D0'
+              }
+            />
             <TextInput
               placeholder="Enter Email"
               keyboardType="email-address"
               value={eMail}
-              onChangeText={setEmail}
+              onChangeText={handleEmailChange}
+              onFocus={() => setEmailTouched(true)}
               style={textFieldStyle.input}
             />
           </View>
-          <View style={[textFieldStyle.textF]}>
-            <LockIcon style={textFieldStyle.icon} />
+          <View
+            style={[
+              textFieldStyle.textF,
+              {
+                borderColor: passwordTouched
+                  ? validatePassword(password)
+                    ? 'green'
+                    : 'red'
+                  : '#D0D0D0',
+              },
+            ]}>
+            <LockIcon
+              color={
+                passwordTouched
+                  ? validatePassword(password)
+                    ? 'green'
+                    : 'red'
+                  : '#D0D0D0'
+              }
+            />
             <TextInput
               placeholder="Enter Password"
               secureTextEntry={true}
               value={password}
-              onChangeText={setPass}
+              onChangeText={handlePasswordChange}
+              onFocus={() => setPasswordTouched(true)}
               style={textFieldStyle.input}
             />
             <EyeClosedIcon style={textFieldStyle.icon} />
@@ -111,41 +169,37 @@ export default function LoginScreenRE() {
               Or login with:
             </Text>
           </View>
-          <View>
-            <TouchableOpacity>
-              <View style={[socialStyle.viewBtn, socialStyle.appleBtn]}>
-                <AppleIcon style={{marginRight: 8}} />
-                <Text
-                  style={{
-                    color: 'white',
-                    fontFamily: 'Poppins-Regular',
-                    marginLeft: 8,
-                  }}>
-                  Login with Apple
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-          <View>
-            <TouchableOpacity>
-              <View
-                style={[
-                  socialStyle.viewBtn,
-                  socialStyle.googleBtn,
-                  socialStyle.trumpBorder,
-                ]}>
-                <GoogleIcon style={{marginRight: 8}} />
-                <Text
-                  style={{
-                    color: 'black',
-                    fontFamily: 'Poppins-Regular',
-                    marginLeft: 8,
-                  }}>
-                  Login with Google
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity>
+            <View style={[socialStyle.viewBtn, socialStyle.appleBtn]}>
+              <AppleIcon style={{marginRight: 8}} />
+              <Text
+                style={{
+                  color: 'white',
+                  fontFamily: 'Poppins-Regular',
+                  marginLeft: 8,
+                }}>
+                Login with Apple
+              </Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <View
+              style={[
+                socialStyle.viewBtn,
+                socialStyle.googleBtn,
+                socialStyle.trumpBorder,
+              ]}>
+              <GoogleIcon style={{marginRight: 8}} />
+              <Text
+                style={{
+                  color: 'black',
+                  fontFamily: 'Poppins-Regular',
+                  marginLeft: 8,
+                }}>
+                Login with Google
+              </Text>
+            </View>
+          </TouchableOpacity>
         </View>
       </ScrollView>
       <View style={{padding: 40}}>
