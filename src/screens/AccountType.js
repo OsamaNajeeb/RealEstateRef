@@ -13,10 +13,10 @@ export default function AccountType({navigation, route}) {
         try {
           navigation.replace('onBSRealEstate');
         } catch (error) {
-          navigation.navigate('test');
+          navigation.navigate('logInRE');
         }
       } else {
-        navigation.navigate('test');
+        navigation.navigate('logInRE');
       }
     } else if (activeButton === 'Plumber') {
       if (isFirstLaunch) {

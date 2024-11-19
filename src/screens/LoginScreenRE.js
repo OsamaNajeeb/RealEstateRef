@@ -26,7 +26,6 @@ export default function LoginScreenRE({navigation}) {
   const [secureTextEntry, setSecureTextEntry] = useState(true);
 
   const validateEmail = email => {
-    // Regex checks for a valid email format with a domain (e.g., ".com")
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
     return emailRegex.test(email);
   };
