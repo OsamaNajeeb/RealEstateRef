@@ -6,16 +6,44 @@ import {
   Linking,
   TouchableOpacity,
   ScrollView,
+  Alert,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import EnvelopeIcon from '../assets/svg/envelope';
 import LockIcon from '../assets/svg/lock';
 import EyeClosedIcon from '../assets/svg/eyeclosed';
 import LoginRectangleBtn from '../assets/svg/customreciconthree';
 import AppleIcon from '../assets/svg/apple';
 import GoogleIcon from '../assets/svg/google';
+import auth from '@react-native-firebase/auth';
 
 export default function LoginScreenRE() {
+  const [eMail, setEmail] = useState('');
+  const [password, setPass] = useState('');
+
+  const onLogIn = () => {
+    auth()
+      .signInWithEmailAndPassword(eMail, password)
+      .then(() => {
+        Alert.alert('Sucess', 'Login Sucessfully', [
+          {
+            text: 'OK',
+            // onPress: () => navigation.navigate('o Algo')
+          },
+        ]);
+      })
+      .catch(error => {
+        if (error.code === 'auth/email-already-in-use') {
+          Alert.alert('Error', 'That email address is already in use!');
+        } else if (error.code === 'auth/invalid-email') {
+          Alert.alert('Error', 'That email address is invalid!');
+        } else {
+          Alert.alert('Error', error.message);
+        }
+        console.error(error);
+      });
+  };
+
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
       <ScrollView contentContainerStyle={{padding: 15, flexGrow: 1}}>
@@ -44,6 +72,8 @@ export default function LoginScreenRE() {
             <TextInput
               placeholder="Enter Email"
               keyboardType="email-address"
+              value={eMail}
+              onChangeText={setEmail}
               style={textFieldStyle.input}
             />
           </View>
@@ -52,6 +82,8 @@ export default function LoginScreenRE() {
             <TextInput
               placeholder="Enter Password"
               secureTextEntry={true}
+              value={password}
+              onChangeText={setPass}
               style={textFieldStyle.input}
             />
             <EyeClosedIcon style={textFieldStyle.icon} />
@@ -72,7 +104,7 @@ export default function LoginScreenRE() {
             </Text>
           </View>
           <View style={{justifyContent: 'center', marginTop: 25}}>
-            <LoginRectangleBtn />
+            <LoginRectangleBtn onPress={onLogIn} />
           </View>
           <View style={{justifyContent: 'center', marginTop: 30}}>
             <Text style={{textAlign: 'center', fontFamily: 'Poppins-Regular'}}>
