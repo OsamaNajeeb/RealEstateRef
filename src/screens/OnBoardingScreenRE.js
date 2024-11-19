@@ -114,7 +114,9 @@ const OnBoardingScreenRE = ({navigation}) => {
               backgroundColor: 'white',
             }}>
             {currentSlideIndex == slides.length - 1 ? (
-              <GettingStartedBtn onPress={() => navigation.replace('test')} />
+              <GettingStartedBtn
+                onPress={() => navigation.replace('logInRE')}
+              />
             ) : (
               <NextRectangleIcon onPress={goNextSlide} />
             )}

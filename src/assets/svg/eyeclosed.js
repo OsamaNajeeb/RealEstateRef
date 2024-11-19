@@ -1,11 +1,12 @@
 import * as React from 'react';
 import Svg, {Path, Mask} from 'react-native-svg';
-const EyeClosedIcon = props => (
+const EyeClosedIcon = ({onPress, ...props}) => (
   <Svg
     width={24}
     height={24}
     viewBox="0 0 24 24"
     fill="none"
+    onPress={onPress}
     xmlns="http://www.w3.org/2000/svg"
     style={{marginHorizontal: 5, justifyContent: 'flex-end'}}
     {...props}>

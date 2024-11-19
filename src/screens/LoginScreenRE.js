@@ -16,12 +16,14 @@ import LoginRectangleBtn from '../assets/svg/customreciconthree';
 import AppleIcon from '../assets/svg/apple';
 import GoogleIcon from '../assets/svg/google';
 import auth from '@react-native-firebase/auth';
+import EyeOpenIcon from '../assets/svg/eyeopen';
 
-export default function LoginScreenRE() {
+export default function LoginScreenRE({navigation}) {
   const [eMail, setEmail] = useState('');
   const [password, setPass] = useState('');
   const [emailTouched, setEmailTouched] = useState(false);
   const [passwordTouched, setPasswordTouched] = useState(false);
+  const [secureTextEntry, setSecureTextEntry] = useState(true);
 
   const validateEmail = email => {
     // Regex checks for a valid email format with a domain (e.g., ".com")
@@ -39,6 +41,10 @@ export default function LoginScreenRE() {
 
   const handlePasswordChange = pass => {
     setPass(pass);
+  };
+
+  const toggleSecureEntry = () => {
+    setSecureTextEntry(!secureTextEntry);
   };
 
   const onLogIn = () => {
@@ -79,9 +85,9 @@ export default function LoginScreenRE() {
           </Text>
           <Text
             style={{
-              color: '#B5B5B5',
+              color: '#909090',
               fontSize: 13,
-              fontFamily: 'Poppins-ExtaBold',
+              fontFamily: 'Poppins-Bold',
             }}>
             Enter your credentials below:
           </Text>
@@ -138,13 +144,17 @@ export default function LoginScreenRE() {
             />
             <TextInput
               placeholder="Enter Password"
-              secureTextEntry={true}
+              secureTextEntry={secureTextEntry}
               value={password}
               onChangeText={handlePasswordChange}
               onFocus={() => setPasswordTouched(true)}
               style={textFieldStyle.input}
             />
-            <EyeClosedIcon style={textFieldStyle.icon} />
+            <TouchableOpacity
+              onPress={toggleSecureEntry}
+              style={textFieldStyle.icon}>
+              {secureTextEntry ? <EyeClosedIcon /> : <EyeOpenIcon />}
+            </TouchableOpacity>
           </View>
           <View style={styles.forgotPasswordContainer}>
             <Text
@@ -206,17 +216,13 @@ export default function LoginScreenRE() {
         <Text
           style={{
             textAlign: 'center',
-            color: '#B3B3B3',
+            color: '#909090',
             fontFamily: 'Poppins-Medium',
           }}>
           Not our member yet?{' '}
           <Text
             style={{color: 'blue'}}
-            onPress={() =>
-              Linking.openURL(
-                'https://www.youtube.com/watch?v=4wO6cYMYblo&list=PLeIJUF3PiXDfBaEA10imClVSzH-WzXFXt&index=3',
-              )
-            }>
+            onPress={() => navigation.navigate('signInSE')}>
             Register now
           </Text>
         </Text>
