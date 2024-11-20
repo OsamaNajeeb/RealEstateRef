@@ -9,6 +9,7 @@ import WestScreen from './src/screens/WestScreen';
 import OnBoardingScreenRE from './src/screens/OnBoardingScreenRE';
 import LoginScreenRE from './src/screens/LoginScreenRE';
 import SignInScreenRE from './src/screens/SignInScreenRE';
+import LoicisneScreen from './src/screens/LoicisneScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -40,7 +41,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
-        <Stack.Screen name={'signInSE'} component={SignInScreenRE} />
+        <Stack.Screen name={'oilad'} component={LoicisneScreen} />
         <Stack.Screen name={'splash'} component={SplashScreen} />
         <Stack.Screen
           name={'acctype'}
@@ -54,6 +55,7 @@ const App = () => {
           />
         )}
         <Stack.Screen name={'logInRE'} component={LoginScreenRE} />
+        <Stack.Screen name={'signInSE'} component={SignInScreenRE} />
         <Stack.Screen name={'test'} component={TestScreen} />
         <Stack.Screen name={'west'} component={WestScreen} />
       </Stack.Navigator>

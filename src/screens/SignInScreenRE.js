@@ -65,7 +65,7 @@ export default function SignInScreenRE({navigation}) {
       .createUserWithEmailAndPassword(eMail, password)
       .then(() => {
         Alert.alert('Success', 'Login Successfully', [
-          {text: 'OK', onPress: () => navigation.replace('logInRE')},
+          {text: 'OK', onPress: () => navigation.navigate('oilad')},
         ]);
       })
       .catch(error => {
