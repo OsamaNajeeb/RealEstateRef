@@ -55,7 +55,9 @@ export default function LoginScreenRE({navigation}) {
     auth()
       .signInWithEmailAndPassword(eMail, password)
       .then(() => {
-        Alert.alert('Success', 'Login Successfully', [{text: 'OK'}]);
+        Alert.alert('Success', 'Login Successfully', [
+          {text: 'OK', onPress: () => navigation.replace('signInSE')},
+        ]);
       })
       .catch(error => {
         if (error.code === 'auth/email-already-in-use') {
@@ -220,7 +222,7 @@ export default function LoginScreenRE({navigation}) {
           }}>
           Not our member yet?{' '}
           <Text
-            style={{color: 'blue'}}
+            style={{color: 'blue', fontFamily: 'Poppins-Bold'}}
             onPress={() => navigation.navigate('signInSE')}>
             Register now
           </Text>

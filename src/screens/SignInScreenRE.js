@@ -5,8 +5,9 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import EnvelopeIcon from '../assets/svg/envelope';
 import auth from '@react-native-firebase/auth';
 import LockIcon from '../assets/svg/lock';
@@ -19,13 +20,17 @@ import TextFieldThree from '../assets/components/TextFieldThree';
 import RealEstateIcon from '../assets/svg/realestate';
 import DropDownIcon from '../assets/svg/dropdownarrow';
 import PhoneIcon from '../assets/svg/phone';
+import ScrollDownArrow from '../assets/svg/arrowcirledown';
 
-export default function SignInScreenRE() {
+export default function SignInScreenRE({navigation}) {
   const [eMail, setEmail] = useState('');
   const [password, setPass] = useState('');
   const [emailTouched, setEmailTouched] = useState(false);
   const [passwordTouched, setPasswordTouched] = useState(false);
   const [secureTextEntry, setSecureTextEntry] = useState(true);
+  const [showArrow, setShowArrow] = useState(true);
+
+  const scrollViewRef = useRef(null);
 
   const validateEmail = email => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -48,6 +53,8 @@ export default function SignInScreenRE() {
     setSecureTextEntry(!secureTextEntry);
   };
 
+  const isEntryValid = validateEmail(eMail) && validatePassword(password);
+
   const onSignIn = () => {
     if (!validateEmail(eMail) || !validatePassword(password)) {
       Alert.alert('Error', 'Please enter a valid email and password.');
@@ -57,7 +64,9 @@ export default function SignInScreenRE() {
     auth()
       .createUserWithEmailAndPassword(eMail, password)
       .then(() => {
-        Alert.alert('Success', 'Login Successfully', [{text: 'OK'}]);
+        Alert.alert('Success', 'Login Successfully', [
+          {text: 'OK', onPress: () => navigation.replace('logInRE')},
+        ]);
       })
       .catch(error => {
         if (error.code === 'auth/email-already-in-use') {
@@ -71,9 +80,24 @@ export default function SignInScreenRE() {
       });
   };
 
+  const handleScroll = event => {
+    const {y} = event.nativeEvent.contentOffset;
+    setShowArrow(y < 10);
+  };
+
+  const scrollToBottom = () => {
+    if (scrollViewRef.current) {
+      scrollViewRef.current.scrollToEnd({animated: true});
+    }
+  };
+
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
-      <ScrollView contentContainerStyle={{padding: 15, flexGrow: 1}}>
+      <ScrollView
+        ref={scrollViewRef}
+        contentContainerStyle={{padding: 15, flexGrow: 1}}
+        onScroll={handleScroll}
+        scrollEventThrottle={16}>
         <View style={{marginTop: 35}}>
           <Text style={{color: 'black', fontFamily: 'Poppins-Bold'}}>
             Job Finder
@@ -164,15 +188,59 @@ export default function SignInScreenRE() {
             Label={'Real-Estate'}
             DynamicIcon={<RealEstateIcon />}
             DynamicIconTwo={<DropDownIcon />}
+            isGrey={true}
           />
         </View>
         <TextFieldTwo Label={'Address'} DynamicIcon={<PhoneIcon />} />
         <TextFieldThree
-          Label={'Real-Estate'}
+          Label={'State'}
           DynamicIcon={<AddressMarkerIcon />}
           DynamicIconTwo={<DropDownIcon />}
         />
+        <TouchableOpacity onPress={onSignIn}>
+          <View
+            style={[
+              socialStyle.viewBtn,
+              {backgroundColor: isEntryValid ? 'black' : '#D0D0D0'},
+            ]}>
+            <Text
+              style={{
+                color: 'white',
+                fontFamily: 'Poppins-Regular',
+                marginLeft: 8,
+              }}>
+              Register
+            </Text>
+          </View>
+        </TouchableOpacity>
       </ScrollView>
+      {showArrow && (
+        <TouchableOpacity onPress={scrollToBottom}>
+          <View
+            style={{
+              justifyContent: 'center',
+              alignSelf: 'center',
+              marginVertical: 10,
+            }}>
+            <ScrollDownArrow />
+          </View>
+        </TouchableOpacity>
+      )}
+      <View style={{padding: 10, marginBottom: 30}}>
+        <Text
+          style={{
+            textAlign: 'center',
+            color: '#909090',
+            fontFamily: 'Poppins-Medium',
+          }}>
+          Already a member{' '}
+          <Text
+            style={{color: 'blue', fontFamily: 'Poppins-Bold'}}
+            onPress={() => navigation.replace('logInRE')}>
+            Login
+          </Text>
+        </Text>
+      </View>
     </View>
   );
 }
@@ -197,14 +265,6 @@ const textFieldStyle = StyleSheet.create({
   },
 });
 
-const styles = StyleSheet.create({
-  forgotPasswordContainer: {
-    marginTop: 8,
-    alignSelf: 'flex-end',
-    paddingHorizontal: 0,
-  },
-});
-
 const socialStyle = StyleSheet.create({
   viewBtn: {
     flexDirection: 'row',
@@ -214,15 +274,5 @@ const socialStyle = StyleSheet.create({
     borderRadius: 10,
     marginTop: 10,
     paddingHorizontal: 10,
-  },
-  appleBtn: {
-    backgroundColor: '#242424',
-  },
-  googleBtn: {
-    backgroundColor: '#fff',
-  },
-  trumpBorder: {
-    borderWidth: 1,
-    borderColor: '#D0D0D0',
   },
 });

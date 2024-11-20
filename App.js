@@ -40,6 +40,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name={'signInSE'} component={SignInScreenRE} />
         <Stack.Screen name={'splash'} component={SplashScreen} />
         <Stack.Screen
           name={'acctype'}
@@ -53,7 +54,6 @@ const App = () => {
           />
         )}
         <Stack.Screen name={'logInRE'} component={LoginScreenRE} />
-        <Stack.Screen name={'signInSE'} component={SignInScreenRE} />
         <Stack.Screen name={'test'} component={TestScreen} />
         <Stack.Screen name={'west'} component={WestScreen} />
       </Stack.Navigator>

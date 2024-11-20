@@ -1,13 +1,21 @@
 import {View, StyleSheet, Text} from 'react-native';
 import React from 'react';
 
-export default function TextFieldThree({Label, DynamicIcon, DynamicIconTwo}) {
+export default function TextFieldThree({
+  Label,
+  DynamicIcon,
+  DynamicIconTwo,
+  isGrey = false,
+}) {
   return (
     <View style={textFieldStyle.textF}>
       {DynamicIcon && (
         <View style={textFieldStyle.leftIcon}>{DynamicIcon}</View>
       )}
-      <Text style={textFieldStyle.input}>{Label}</Text>
+      <Text
+        style={[textFieldStyle.input, {color: isGrey ? 'black' : '#9F9F9F'}]}>
+        {Label}
+      </Text>
       {DynamicIconTwo && (
         <View style={textFieldStyle.rightIcon}>{DynamicIconTwo}</View>
       )}
@@ -37,7 +45,6 @@ const textFieldStyle = StyleSheet.create({
   input: {
     flex: 1,
     textAlign: 'left',
-    color: 'black',
     fontSize: 15,
     marginLeft: 3,
   },
