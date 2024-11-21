@@ -1,12 +1,19 @@
-import {View, Text, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
 import React, {useRef, useState} from 'react';
 import TextFieldTwo from '../assets/components/TextFieldTwo';
 import TextFieldThree from '../assets/components/TextFieldThree';
 import DropDownIcon from '../assets/svg/dropdownarrow';
 import UploadCloudIcon from '../assets/svg/uploadcloud';
 import DynamicBtn from '../assets/svg/dynamicbtn';
+import ScrollDownArrow from '../assets/svg/arrowcirledown';
 
-export default function LoicisneScreen() {
+export default function LoicisneScreen({navigation}) {
   const [showArrow, setShowArrow] = useState(true);
 
   const scrollViewRef = useRef(null);
@@ -25,7 +32,7 @@ export default function LoicisneScreen() {
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
       <ScrollView
-        // ref={scrollViewRef}
+        ref={scrollViewRef}
         contentContainerStyle={{padding: 15, flexGrow: 1}}
         onScroll={handleScroll}
         scrollEventThrottle={16}>
@@ -76,43 +83,57 @@ export default function LoicisneScreen() {
             <Text style={{color: 'red'}}>*</Text>
           </Text>
         </View>
-        <View
-          style={{
-            alignItems: 'center',
-            borderColor: '#D0D0D0',
-            borderWidth: 2,
-            borderRadius: 10,
-            padding: 5,
-            height: 150,
-            backgroundColor: 'white',
-            borderStyle: 'dashed',
-            marginVertical: 10,
-          }}>
+        <View style={styleBaby.DragnDrop}>
           <UploadCloudIcon style={{marginTop: 30}} />
-          <Text
-            style={{
-              textAlign: 'center',
-              marginTop: 10,
-              color: '#64748B',
-              fontSize: 13,
-              fontFamily: 'Poppins-Medium',
-            }}>
-            Format DOC, PDF, JPG
-          </Text>
-          <Text
-            style={{
-              textAlign: 'center',
-              color: '#1051F8',
-              fontSize: 12,
-              fontFamily: 'Poppins-Bold',
-            }}>
-            Browse Files
-          </Text>
+          <Text style={styleBaby.extensionN}>Format DOC, PDF, JPG</Text>
+          <Text style={styleBaby.link}>Browse Files</Text>
         </View>
         <View style={{marginTop: 10}}>
-          <DynamicBtn label={'Submit'} />
+          <DynamicBtn
+            onPress={() => navigation.navigate('cunty')}
+            label={'Submit'}
+          />
         </View>
       </ScrollView>
+      {showArrow && (
+        <TouchableOpacity onPress={scrollToBottom}>
+          <View
+            style={{
+              justifyContent: 'center',
+              alignSelf: 'center',
+              marginVertical: 10,
+            }}>
+            <ScrollDownArrow />
+          </View>
+        </TouchableOpacity>
+      )}
     </View>
   );
 }
+
+const styleBaby = StyleSheet.create({
+  DragnDrop: {
+    alignItems: 'center',
+    borderColor: '#D0D0D0',
+    borderWidth: 2,
+    borderRadius: 10,
+    padding: 5,
+    height: 150,
+    backgroundColor: 'white',
+    borderStyle: 'dashed',
+    marginVertical: 10,
+  },
+  extensionN: {
+    textAlign: 'center',
+    marginTop: 10,
+    color: '#64748B',
+    fontSize: 13,
+    fontFamily: 'Poppins-Medium',
+  },
+  link: {
+    textAlign: 'center',
+    color: '#1051F8',
+    fontSize: 12,
+    fontFamily: 'Poppins-Bold',
+  },
+});
