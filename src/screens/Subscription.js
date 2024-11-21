@@ -1,11 +1,31 @@
-import {View, Text, Image, StyleSheet, Linking} from 'react-native';
-import React from 'react';
+import {View, Text, Image, Linking} from 'react-native';
+import React, {useState} from 'react';
 import DynamicBtn from '../assets/svg/dynamicbtn';
+import CustomModal from '../assets/components/DialogBox';
 
 export default function Subscription() {
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const handleOpenModal = () => {
+    setModalVisible(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalVisible(false);
+  };
+
+  const handleButtonOnePress = () => {
+    console.log('Button One Pressed');
+    handleCloseModal();
+  };
+
+  const handleButtonTwoPress = () => {
+    console.log('Button Two Pressed');
+    handleCloseModal();
+  };
+
   return (
     <View style={{padding: 15, flex: 1, backgroundColor: 'white'}}>
-      {/* Skip Text */}
       <View style={{marginTop: 8, alignSelf: 'flex-end'}}>
         <Text
           style={{
@@ -23,7 +43,6 @@ export default function Subscription() {
         </Text>
       </View>
 
-      {/* Centered Content */}
       <View
         style={{
           flex: 1,
@@ -76,14 +95,19 @@ export default function Subscription() {
             </Text>
           </View>
         </View>
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+          <CustomModal
+            visible={isModalVisible}
+            onClose={handleCloseModal}
+            title="Subscription Modal"
+            onButtonOnePress={handleButtonOnePress}
+            onButtonTwoPress={handleButtonTwoPress}
+          />
+        </View>
       </View>
 
-      {/* Subscribe Button */}
       <View style={{flex: 0.2, justifyContent: 'flex-end', marginBottom: 20}}>
-        <DynamicBtn
-          onPress={() => navigation.navigate('subscroble')}
-          label={'Subscribe Now'}
-        />
+        <DynamicBtn onPress={handleOpenModal} label={'Subscribe Now'} />
       </View>
     </View>
   );
