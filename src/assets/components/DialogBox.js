@@ -1,5 +1,8 @@
 import React from 'react';
 import {Modal, View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import AppleIcon from '../svg/apple';
+import GoogleIcon from '../svg/google';
+import CloseBtnIcon from '../svg/cross';
 
 const CustomModal = ({
   visible,
@@ -19,27 +22,67 @@ const CustomModal = ({
           <View style={styles.modalHeader}>
             <Text style={styles.title}>{title}</Text>
             <TouchableOpacity onPress={onClose} style={styles.closeButton}>
-              <Text style={styles.closeButtonText}>X</Text>
+              <CloseBtnIcon />
             </TouchableOpacity>
           </View>
-
-          <View style={styles.buttonsContainer}>
-            <TouchableOpacity
-              style={styles.modalButton}
-              onPress={onButtonOnePress}>
-              <Text style={styles.buttonText}>Button One</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.modalButton, styles.secondaryButton]}
-              onPress={onButtonTwoPress}>
-              <Text style={styles.buttonText}>Button Two</Text>
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity onPress={onButtonOnePress}>
+            <View style={[socialStyle.viewBtn, socialStyle.appleBtn]}>
+              <AppleIcon style={{marginRight: 8}} />
+              <Text
+                style={{
+                  color: 'white',
+                  fontFamily: 'Poppins-Regular',
+                  marginLeft: 8,
+                }}>
+                Login with Apple
+              </Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={onButtonTwoPress}>
+            <View
+              style={[
+                socialStyle.viewBtn,
+                socialStyle.googleBtn,
+                socialStyle.trumpBorder,
+              ]}>
+              <GoogleIcon style={{marginRight: 8}} />
+              <Text
+                style={{
+                  color: 'black',
+                  fontFamily: 'Poppins-Regular',
+                  marginLeft: 8,
+                }}>
+                Login with Google
+              </Text>
+            </View>
+          </TouchableOpacity>
         </View>
       </View>
     </Modal>
   );
 };
+
+const socialStyle = StyleSheet.create({
+  viewBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 47,
+    borderRadius: 10,
+    marginTop: 10,
+    paddingHorizontal: 10,
+  },
+  appleBtn: {
+    backgroundColor: '#242424',
+  },
+  googleBtn: {
+    backgroundColor: '#fff',
+  },
+  trumpBorder: {
+    borderWidth: 1,
+    borderColor: '#D0D0D0',
+  },
+});
 
 const styles = StyleSheet.create({
   modalOverlay: {
@@ -49,11 +92,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalContainer: {
-    width: '80%',
+    width: '90%',
     backgroundColor: 'white',
     borderRadius: 10,
     padding: 20,
     elevation: 5,
+    height: '30%',
   },
   modalHeader: {
     flexDirection: 'row',
@@ -75,24 +119,8 @@ const styles = StyleSheet.create({
     color: 'red',
   },
   buttonsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     marginTop: 20,
-  },
-  modalButton: {
-    flex: 1,
-    marginHorizontal: 5,
-    paddingVertical: 10,
-    backgroundColor: '#3498db',
-    borderRadius: 5,
-    alignItems: 'center',
-  },
-  secondaryButton: {
-    backgroundColor: '#2ecc71',
-  },
-  buttonText: {
-    color: 'white',
-    fontFamily: 'Poppins-Medium',
   },
 });
 
