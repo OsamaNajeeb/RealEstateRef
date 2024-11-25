@@ -13,7 +13,7 @@ import GoogleIcon from '../assets/svg/google';
 import AppleIcon from '../assets/svg/apple';
 import CloseBtnIcon from '../assets/svg/cross';
 
-export default function ApprovalScreen() {
+export default function ApprovalScreen({navigation}) {
   const [isModalVisible, setModalVisible] = useState(false);
 
   const handleOpenModal = () => {
@@ -117,7 +117,10 @@ export default function ApprovalScreen() {
       </View>
 
       <View style={{flex: 0.2, justifyContent: 'flex-end', marginBottom: 20}}>
-        <DynamicBtn onPress={handleOpenModal} label={'Subscribe Now'} />
+        <DynamicBtn
+          onPress={() => navigation.navigate('splash')}
+          label={'Subscribe Now'}
+        />
       </View>
     </View>
   );

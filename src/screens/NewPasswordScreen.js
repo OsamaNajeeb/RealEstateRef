@@ -21,6 +21,7 @@ export default function NewPasswordScreen({navigation}) {
   };
 
   const handleCloseModal = () => {
+    navigation.navigate('logInRE');
     setModalVisible(false);
   };
 
