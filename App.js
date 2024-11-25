@@ -12,6 +12,7 @@ import SignInScreenRE from './src/screens/SignInScreenRE';
 import LoicisneScreen from './src/screens/LoicisneScreen';
 import CountryScreen from './src/screens/CountryScreen';
 import Subscription from './src/screens/Subscription';
+import ApprovalScreen from './src/screens/ApprovalScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -44,6 +45,7 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name={'subscroble'} component={Subscription} />
+        <Stack.Screen name={'approve'} component={ApprovalScreen} />
         <Stack.Screen name={'splash'} component={SplashScreen} />
         <Stack.Screen
           name={'acctype'}

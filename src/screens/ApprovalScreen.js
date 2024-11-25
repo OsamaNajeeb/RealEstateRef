@@ -13,7 +13,7 @@ import GoogleIcon from '../assets/svg/google';
 import AppleIcon from '../assets/svg/apple';
 import CloseBtnIcon from '../assets/svg/cross';
 
-export default function Subscription({navigation}) {
+export default function ApprovalScreen() {
   const [isModalVisible, setModalVisible] = useState(false);
 
   const handleOpenModal = () => {
@@ -25,32 +25,20 @@ export default function Subscription({navigation}) {
   };
 
   const handleButtonOnePress = () => {
-    navigation.navigate('approve');
+    console.log('Button One Pressed');
     handleCloseModal();
   };
 
   const handleButtonTwoPress = () => {
-    navigation.navigate('approve');
+    console.log('Button Two Pressed');
     handleCloseModal();
   };
 
   return (
     <View style={{padding: 15, flex: 1, backgroundColor: 'white'}}>
-      <View style={{marginTop: 8, alignSelf: 'flex-end'}}>
-        <Text
-          style={StyleOne.skipBtn}
-          onPress={() =>
-            Linking.openURL(
-              'https://www.youtube.com/watch?v=4wO6cYMYblo&list=PLeIJUF3PiXDfBaEA10imClVSzH-WzXFXt&index=3',
-            )
-          }>
-          Skip
-        </Text>
-      </View>
-
       <View style={StyleOne.body}>
         <Image
-          source={require('../assets/png/subscribe.png')}
+          source={require('../assets/png/approval.png')}
           style={StyleOne.imageView}
         />
         <Text
@@ -58,28 +46,23 @@ export default function Subscription({navigation}) {
             textAlign: 'center',
             fontFamily: 'Poppins-Regular',
             marginTop: 20,
+            paddingHorizontal: 10,
           }}>
-          Elevate your{' '}
-          <Text style={{fontFamily: 'Poppins-Bold'}}>
-            Out of Town Referrals
-          </Text>{' '}
-          journey by upgrading to a premium account.
+          Your Profile will be Approved in 2 - 72 hours. If your profile has not
+          been approved within the above time frame. Please Contact our Support
+          team below to further assist you with this issue.
         </Text>
         <View style={{justifyContent: 'center', marginTop: 20, width: '100%'}}>
-          <View style={StyleOne.greyBox}>
-            <Text style={{marginLeft: 8, fontFamily: 'Poppins-Medium'}}>
-              Priority upgrade fee:{' '}
-            </Text>
-            <Text
-              style={{
-                textAlign: 'right',
-                marginLeft: 'auto',
-                marginRight: 8,
-                fontFamily: 'Poppins-Bold',
-              }}>
-              $12/year
-            </Text>
-          </View>
+          <Text
+            style={{
+              textAlign: 'center',
+              marginTop: 5,
+              fontSize: 16,
+              fontFamily: 'Poppins-Regular',
+              color: '#3277DD',
+            }}>
+            Get Help
+          </Text>
         </View>
 
         <Modal
