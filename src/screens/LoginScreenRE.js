@@ -164,11 +164,7 @@ export default function LoginScreenRE({navigation}) {
                 fontFamily: 'Poppins-SemiBold',
                 color: 'blue',
               }}
-              onPress={() =>
-                Linking.openURL(
-                  'https://www.youtube.com/watch?v=4wO6cYMYblo&list=PLeIJUF3PiXDfBaEA10imClVSzH-WzXFXt&index=3',
-                )
-              }>
+              onPress={() => navigation.navigate('forgot')}>
               Forgot Password
             </Text>
           </View>

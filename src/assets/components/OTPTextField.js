@@ -5,7 +5,6 @@ export default function OTPTextField({Label = ''}) {
   return (
     <View
       style={{
-        flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         marginTop: 10,
@@ -18,7 +17,7 @@ export default function OTPTextField({Label = ''}) {
               placeholder={Label}
               style={textFieldStyle.input}
               keyboardType="numeric"
-              maxLength={1} // Limit to a single digit for OTP fields
+              maxLength={1}
             />
           </View>
         ))}

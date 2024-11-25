@@ -13,7 +13,7 @@ import TextFieldThree from '../assets/components/TextFieldThree';
 import LockIcon from '../assets/svg/lock';
 import EyeClosedIcon from '../assets/svg/eyeclosed';
 
-export default function NewPasswordScreen() {
+export default function NewPasswordScreen({navigation}) {
   const [isModalVisible, setModalVisible] = useState(false);
 
   const handleOpenModal = () => {
@@ -73,7 +73,7 @@ export default function NewPasswordScreen() {
         </View>
       </Modal>
       <View style={{marginTop: 5}}>
-        <ArrowBackIcon />
+        <ArrowBackIcon onPress={() => navigation.goBack()} />
       </View>
       <View style={{marginTop: 30}}>
         <Text
@@ -113,7 +113,7 @@ export default function NewPasswordScreen() {
             Remember Password?{' '}
             <Text
               style={{color: 'blue', fontFamily: 'Poppins-Bold'}}
-              onPress={() => navigation.navigate('signInSE')}>
+              onPress={() => navigation.navigate('logInRE')}>
               Sign In
             </Text>
           </Text>

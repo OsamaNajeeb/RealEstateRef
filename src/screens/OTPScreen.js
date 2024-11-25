@@ -1,16 +1,17 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 import ArrowBackIcon from '../assets/svg/arrowleft';
-import TextFieldTwo from '../assets/components/TextFieldTwo';
-import EnvelopeIcon from '../assets/svg/envelope';
 import DynamicBtn from '../assets/svg/dynamicbtn';
 import OTPTextField from '../assets/components/OTPTextField';
 
-export default function OTPScreen() {
+export default function OTPScreen({navigation}) {
+  const resendOTP = () => {
+    console.log('Resend OTP');
+  };
   return (
     <View style={{flex: 1, backgroundColor: 'white', padding: 15}}>
       <View style={{marginTop: 5}}>
-        <ArrowBackIcon />
+        <ArrowBackIcon onPress={() => navigation.goBack()} />
       </View>
       <View style={{marginTop: 30}}>
         <Text
@@ -30,7 +31,10 @@ export default function OTPScreen() {
           <OTPTextField Label="0" />
         </View>
         <View style={{marginTop: 15}}>
-          <DynamicBtn label={'Continue'} />
+          <DynamicBtn
+            onPress={() => navigation.navigate('new')}
+            label={'Continue'}
+          />
         </View>
         <View style={{paddingHorizontal: 40, marginTop: 15}}>
           <Text
@@ -42,7 +46,7 @@ export default function OTPScreen() {
             Didn’t receive any code?{' '}
             <Text
               style={{color: 'blue', fontFamily: 'Poppins-Bold'}}
-              onPress={() => navigation.navigate('signInSE')}>
+              onPress={resendOTP}>
               Resend
             </Text>
           </Text>

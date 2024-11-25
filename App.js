@@ -47,7 +47,6 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
-        <Stack.Screen name={'new'} component={NewPasswordScreen} />
         <Stack.Screen name={'splash'} component={SplashScreen} />
         <Stack.Screen
           name={'acctype'}
@@ -66,8 +65,9 @@ const App = () => {
         <Stack.Screen name={'cunty'} component={CountryScreen} />
         <Stack.Screen name={'subscroble'} component={Subscription} />
         <Stack.Screen name={'approve'} component={ApprovalScreen} />
-        <Stack.Screen name={'otp'} component={OTPScreen} />
         <Stack.Screen name={'forgot'} component={ForgotPassword} />
+        <Stack.Screen name={'otp'} component={OTPScreen} />
+        <Stack.Screen name={'new'} component={NewPasswordScreen} />
         <Stack.Screen name={'test'} component={TestScreen} />
         <Stack.Screen name={'west'} component={WestScreen} />
       </Stack.Navigator>

@@ -5,11 +5,11 @@ import TextFieldTwo from '../assets/components/TextFieldTwo';
 import EnvelopeIcon from '../assets/svg/envelope';
 import DynamicBtn from '../assets/svg/dynamicbtn';
 
-export default function ForgotPassword() {
+export default function ForgotPassword({navigation}) {
   return (
     <View style={{flex: 1, backgroundColor: 'white', padding: 15}}>
       <View style={{marginTop: 5}}>
-        <ArrowBackIcon />
+        <ArrowBackIcon onPress={() => navigation.goBack()} />
       </View>
       <View style={{marginTop: 30}}>
         <Text
@@ -28,7 +28,10 @@ export default function ForgotPassword() {
           <TextFieldTwo DynamicIcon={<EnvelopeIcon />} Label={'Enter Email'} />
         </View>
         <View style={{marginTop: 15}}>
-          <DynamicBtn label={'Continue'} />
+          <DynamicBtn
+            onPress={() => navigation.navigate('otp')}
+            label={'Continue'}
+          />
         </View>
         <View style={{paddingHorizontal: 40, marginTop: 15}}>
           <Text
@@ -40,7 +43,7 @@ export default function ForgotPassword() {
             Remember Password?{' '}
             <Text
               style={{color: 'blue', fontFamily: 'Poppins-Bold'}}
-              onPress={() => navigation.navigate('signInSE')}>
+              onPress={() => navigation.navigate('logInRE')}>
               Sign In
             </Text>
           </Text>
