@@ -13,6 +13,9 @@ import LoicisneScreen from './src/screens/LoicisneScreen';
 import CountryScreen from './src/screens/CountryScreen';
 import Subscription from './src/screens/Subscription';
 import ApprovalScreen from './src/screens/ApprovalScreen';
+import ForgotPassword from './src/screens/ForgotPasswordScreen';
+import OTPScreen from './src/screens/OTPScreen';
+import NewPasswordScreen from './src/screens/NewPasswordScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -44,8 +47,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
-        <Stack.Screen name={'subscroble'} component={Subscription} />
-        <Stack.Screen name={'approve'} component={ApprovalScreen} />
+        <Stack.Screen name={'new'} component={NewPasswordScreen} />
         <Stack.Screen name={'splash'} component={SplashScreen} />
         <Stack.Screen
           name={'acctype'}
@@ -62,6 +64,10 @@ const App = () => {
         <Stack.Screen name={'signInSE'} component={SignInScreenRE} />
         <Stack.Screen name={'oilad'} component={LoicisneScreen} />
         <Stack.Screen name={'cunty'} component={CountryScreen} />
+        <Stack.Screen name={'subscroble'} component={Subscription} />
+        <Stack.Screen name={'approve'} component={ApprovalScreen} />
+        <Stack.Screen name={'otp'} component={OTPScreen} />
+        <Stack.Screen name={'forgot'} component={ForgotPassword} />
         <Stack.Screen name={'test'} component={TestScreen} />
         <Stack.Screen name={'west'} component={WestScreen} />
       </Stack.Navigator>
