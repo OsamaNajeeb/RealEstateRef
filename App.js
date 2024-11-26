@@ -16,6 +16,7 @@ import ApprovalScreen from './src/screens/ApprovalScreen';
 import ForgotPassword from './src/screens/ForgotPasswordScreen';
 import OTPScreen from './src/screens/OTPScreen';
 import NewPasswordScreen from './src/screens/NewPasswordScreen';
+import CommandCentreScreen from './src/screens/CommandCentreScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -47,6 +48,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name={'cc'} component={CommandCentreScreen} />
         <Stack.Screen name={'splash'} component={SplashScreen} />
         <Stack.Screen
           name={'acctype'}
