@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native';
 import HomeScreen from './HomeScreen';
 import NeonHomeIconActive from '../assets/svg/neonhomefilled';
 import NeonHomeEmpty from '../assets/svg/neonhome';
@@ -32,17 +32,17 @@ export default function CommandCentreScreen() {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.content}>{renderScreen()}</View>
+    <View style={ccStyles.container}>
+      <View style={ccStyles.content}>{renderScreen()}</View>
 
-      <View style={styles.bottomNav}>
+      <View style={ccStyles.bottomNav}>
         <TouchableOpacity
-          style={styles.navItem}
+          style={ccStyles.navItem}
           onPress={() => setActiveTab('Home')}>
           {activeTab === 'Home' ? <NeonHomeIconActive /> : <NeonHomeEmpty />}
           <Text
             style={[
-              styles.navLabel,
+              ccStyles.navLabel,
               {color: activeTab === 'Home' ? 'blue' : 'gray'},
             ]}>
             Home
@@ -50,12 +50,12 @@ export default function CommandCentreScreen() {
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={styles.navItem}
+          style={ccStyles.navItem}
           onPress={() => setActiveTab('Post')}>
           {activeTab === 'Post' ? <NeonPostFilledIcon /> : <NeonPostIcon />}
           <Text
             style={[
-              styles.navLabel,
+              ccStyles.navLabel,
               {color: activeTab === 'Post' ? 'blue' : 'gray'},
             ]}>
             Post
@@ -63,7 +63,7 @@ export default function CommandCentreScreen() {
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={styles.navItem}
+          style={ccStyles.navItem}
           onPress={() => setActiveTab('Referrals')}>
           {activeTab === 'Referrals' ? (
             <NeonReferralsFilledIcons />
@@ -72,7 +72,7 @@ export default function CommandCentreScreen() {
           )}
           <Text
             style={[
-              styles.navLabel,
+              ccStyles.navLabel,
               {color: activeTab === 'Referrals' ? 'blue' : 'gray'},
             ]}>
             Referrals
@@ -80,12 +80,12 @@ export default function CommandCentreScreen() {
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={styles.navItem}
+          style={ccStyles.navItem}
           onPress={() => setActiveTab('KTS')}>
           {activeTab === 'KTS' ? <NeonKTSFilledIcon /> : <NeonKTSIcon />}
           <Text
             style={[
-              styles.navLabel,
+              ccStyles.navLabel,
               {color: activeTab === 'KTS' ? 'blue' : 'gray'},
             ]}>
             KTS
@@ -96,7 +96,7 @@ export default function CommandCentreScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const ccStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
@@ -107,9 +107,7 @@ const styles = StyleSheet.create({
   bottomNav: {
     flexDirection: 'row',
     height: 70,
-    backgroundColor: '#f8f8f8',
-    borderTopWidth: 1,
-    borderTopColor: '#e0e0e0',
+    backgroundColor: 'white',
   },
   navItem: {
     flex: 1,
