@@ -1,30 +1,17 @@
 import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import HomeScreen from './HomeScreen';
-
-function SearchScreen() {
-  return (
-    <View style={styles.screen}>
-      <Text>Search Screen</Text>
-    </View>
-  );
-}
-
-function NotificationsScreen() {
-  return (
-    <View style={styles.screen}>
-      <Text>Notifications Screen</Text>
-    </View>
-  );
-}
-
-function ProfileScreen() {
-  return (
-    <View style={styles.screen}>
-      <Text>Profile Screen</Text>
-    </View>
-  );
-}
+import NeonHomeIconActive from '../assets/svg/neonhomefilled';
+import NeonHomeEmpty from '../assets/svg/neonhome';
+import PostScreen from './PostScreen';
+import NeonPostIcon from '../assets/svg/neonpost';
+import NeonPostFilledIcon from '../assets/svg/neonpostfilled';
+import ReferralsScreen from './ReferralsScreen';
+import NeonReferralsIcon from '../assets/svg/neonreferrals';
+import NeonReferralsFilledIcons from '../assets/svg/neonreferralsfilled';
+import KeytoFailureScreen from './KeytoFailureScreen';
+import NeonKTSIcon from '../assets/svg/neonkts';
+import NeonKTSFilledIcon from '../assets/svg/neonktsfilled';
 
 export default function CommandCentreScreen() {
   const [activeTab, setActiveTab] = useState('Home');
@@ -33,12 +20,12 @@ export default function CommandCentreScreen() {
     switch (activeTab) {
       case 'Home':
         return <HomeScreen />;
-      case 'Search':
-        return <SearchScreen />;
-      case 'Notifications':
-        return <NotificationsScreen />;
-      case 'Profile':
-        return <ProfileScreen />;
+      case 'Post':
+        return <PostScreen />;
+      case 'Referrals':
+        return <ReferralsScreen />;
+      case 'KTS':
+        return <KeytoFailureScreen />;
       default:
         return <HomeScreen />;
     }
@@ -46,15 +33,13 @@ export default function CommandCentreScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Render the active screen */}
       <View style={styles.content}>{renderScreen()}</View>
 
-      {/* Custom Bottom Navigation Bar */}
       <View style={styles.bottomNav}>
         <TouchableOpacity
           style={styles.navItem}
           onPress={() => setActiveTab('Home')}>
-          {/* <HomeIcon fill={activeTab === 'Home' ? 'blue' : 'gray'} /> */}
+          {activeTab === 'Home' ? <NeonHomeIconActive /> : <NeonHomeEmpty />}
           <Text
             style={[
               styles.navLabel,
@@ -66,42 +51,44 @@ export default function CommandCentreScreen() {
 
         <TouchableOpacity
           style={styles.navItem}
-          onPress={() => setActiveTab('Search')}>
-          {/* <SearchIcon fill={activeTab === 'Search' ? 'blue' : 'gray'} /> */}
+          onPress={() => setActiveTab('Post')}>
+          {activeTab === 'Post' ? <NeonPostFilledIcon /> : <NeonPostIcon />}
           <Text
             style={[
               styles.navLabel,
-              {color: activeTab === 'Search' ? 'blue' : 'gray'},
+              {color: activeTab === 'Post' ? 'blue' : 'gray'},
             ]}>
-            Search
+            Post
           </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.navItem}
-          onPress={() => setActiveTab('Notifications')}>
-          {/* <NotificationsIcon
-            fill={activeTab === 'Notifications' ? 'blue' : 'gray'}
-          /> */}
+          onPress={() => setActiveTab('Referrals')}>
+          {activeTab === 'Referrals' ? (
+            <NeonReferralsFilledIcons />
+          ) : (
+            <NeonReferralsIcon />
+          )}
           <Text
             style={[
               styles.navLabel,
-              {color: activeTab === 'Notifications' ? 'blue' : 'gray'},
+              {color: activeTab === 'Referrals' ? 'blue' : 'gray'},
             ]}>
-            Notifications
+            Referrals
           </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.navItem}
-          onPress={() => setActiveTab('Profile')}>
-          {/* <ProfileIcon fill={activeTab === 'Profile' ? 'blue' : 'gray'} /> */}
+          onPress={() => setActiveTab('KTS')}>
+          {activeTab === 'KTS' ? <NeonKTSFilledIcon /> : <NeonKTSIcon />}
           <Text
             style={[
               styles.navLabel,
-              {color: activeTab === 'Profile' ? 'blue' : 'gray'},
+              {color: activeTab === 'KTS' ? 'blue' : 'gray'},
             ]}>
-            Profile
+            KTS
           </Text>
         </TouchableOpacity>
       </View>
