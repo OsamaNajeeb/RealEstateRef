@@ -9,8 +9,10 @@ import {
 import React, {useRef, useState} from 'react';
 import NotificationAlertIcon from '../assets/svg/notificationexist';
 import ScrollDownArrow from '../assets/svg/arrowcirledown';
+import OfferComponent from '../assets/components/OfferComponent';
 import AtlassianLogo from '../assets/svg/atlassianlogo';
-import PurpleGDyIcon from '../assets/svg/purpledynmicbtn';
+import ExpiredLemonIcon from '../assets/svg/expiredLemon';
+import ShopifyGarbageIcon from '../assets/svg/shopify';
 
 export default function HomeScreen() {
   const [showArrow, setShowArrow] = useState(true);
@@ -50,127 +52,67 @@ export default function HomeScreen() {
       </View>
       <ScrollView
         ref={scrollViewRef}
-        contentContainerStyle={{padding: 15, flexGrow: 1, paddingBottom: 70}}
+        contentContainerStyle={{padding: 15, flexGrow: 1, paddingBottom: 120}}
         onScroll={handleScroll}
         scrollEventThrottle={16}>
-        <View style={{marginTop: 35}}>
+        <View style={{marginTop: 10}}>
           <Text
             style={{color: 'black', fontFamily: 'Poppins-Bold', fontSize: 20}}>
             Job Request
           </Text>
         </View>
-        <View
-          style={{
-            borderColor: '#D0D0D0',
-            borderWidth: 2,
-            borderRadius: 10,
-            padding: 5,
-            backgroundColor: 'white',
-            marginVertical: 10,
-            flex: 0.3,
-            padding: 10,
-          }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}>
-            <View
-              style={{
-                height: 40,
-                width: 40,
-                borderRadius: 10,
-                backgroundColor: '#F1F1F1',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
-              <AtlassianLogo />
-            </View>
-            <View style={{marginLeft: 10, justifyContent: 'center'}}>
-              <Text
-                style={{
-                  fontSize: 10,
-                  fontFamily: 'Poppins-Medium',
-                  color: '#505050',
-                }}>
-                John-California-Los Angeles
-              </Text>
-              <Text
-                style={{
-                  fontSize: 13,
-                  color: '#242424',
-                  fontFamily: 'Poppins-Bold',
-                }}>
-                Referral Price: 40%
-              </Text>
-            </View>
-            <View
-              style={{
-                justifyContent: 'center',
-                alignItems: 'center',
-                marginLeft: 'auto',
-                marginBottom: 'auto',
-              }}>
-              <Text
-                style={{
-                  textAlign: 'right',
-                  fontSize: 9,
-                  color: 'red',
-                  fontFamily: 'Poppins-Italic',
-                }}>
-                2h 30m left
-              </Text>
-            </View>
-          </View>
-          <Text
-            style={{fontSize: 10, marginTop: 10, fontFamily: 'Poppins-Medium'}}>
-            Loan Approved for/Max Purchase Price {'\n'}$20/$50
-          </Text>
-          <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{
-                color: '#3277DD',
-                marginTop: 5,
-                fontSize: 12,
-                fontFamily: 'Poppins-Medium',
-                flex: 0.7,
-              }}>
-              1h ago
-            </Text>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginLeft: 'auto',
-              }}>
-              <View style={{marginHorizontal: 5}}>
-                <PurpleGDyIcon label="Accept" />
-              </View>
-              <View
-                style={{
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  height: 28, // Match the height of PurpleGDyIcon
-                  borderRadius: 5,
-                  paddingHorizontal: 10,
-                  backgroundColor: '#E2E2E2',
-                  width: 75, // Match the width of PurpleGDyIcon
-                  marginHorizontal: 5, // Add similar margin
-                }}>
-                <Text
-                  style={{
-                    fontSize: 12,
-                    fontFamily: 'Poppins-Regular',
-                    color: 'black',
-                  }}>
-                  Decline
-                </Text>
-              </View>
-            </View>
-          </View>
-        </View>
+        <OfferComponent
+          DynamicIcon={<AtlassianLogo />}
+          ReferralName={'John-California'}
+          ReferralPrice={40}
+          hours={2}
+          mins={30}
+          loanApprovalOne={20}
+          loanApprovalTwo={50}
+          initialTime={1}
+        />
+        <OfferComponent
+          DynamicIcon={<ExpiredLemonIcon />}
+          ReferralName={'Umbreen-Dubai'}
+          ReferralPrice={30}
+          hours={4}
+          mins={24}
+          loanApprovalOne={34}
+          loanApprovalTwo={78}
+          initialTime={2}
+        />
+        <OfferComponent
+          DynamicIcon={<AtlassianLogo />}
+          ReferralName={'John-California'}
+          ReferralPrice={33}
+          hours={2}
+          mins={33}
+          loanApprovalOne={21}
+          loanApprovalTwo={48}
+          initialTime={1}
+        />
+        <OfferComponent
+          DynamicIcon={<ShopifyGarbageIcon />}
+          ReferralName={'Hana-Stockholm'}
+          ReferralPrice={50}
+          hours={1}
+          mins={12}
+          loanApprovalOne={45}
+          loanApprovalTwo={75}
+          initialTime={4}
+        />
+        <OfferComponent
+          DynamicIcon={<ExpiredLemonIcon />}
+          ReferralName={'Umbreen-Dubai'}
+          ReferralPrice={30}
+          hours={4}
+          mins={24}
+          loanApprovalOne={34}
+          loanApprovalTwo={78}
+          initialTime={2}
+        />
       </ScrollView>
-      {/* {showArrow && (
+      {showArrow && (
         <TouchableOpacity
           onPress={scrollToBottom}
           style={homeStyle.arrowContainer}>
@@ -178,7 +120,7 @@ export default function HomeScreen() {
             <ScrollDownArrow />
           </View>
         </TouchableOpacity>
-      )} */}
+      )}
     </View>
   );
 }

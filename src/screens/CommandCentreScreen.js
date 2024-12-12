@@ -14,7 +14,7 @@ import NeonKTSIcon from '../assets/svg/neonkts';
 import NeonKTSFilledIcon from '../assets/svg/neonktsfilled';
 
 export default function CommandCentreScreen() {
-  const [activeTab, setActiveTab] = useState('Home');
+  const [activeTab, setActiveTab] = useState('Post');
 
   const renderScreen = () => {
     switch (activeTab) {
