@@ -17,6 +17,8 @@ import ForgotPassword from './src/screens/ForgotPasswordScreen';
 import OTPScreen from './src/screens/OTPScreen';
 import NewPasswordScreen from './src/screens/NewPasswordScreen';
 import CommandCentreScreen from './src/screens/CommandCentreScreen';
+import AcceptScreen from './src/screens/AcceptScreen';
+import HomeScreen from './src/screens/HomeScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -70,6 +72,8 @@ const App = () => {
         <Stack.Screen name={'forgot'} component={ForgotPassword} />
         <Stack.Screen name={'otp'} component={OTPScreen} />
         <Stack.Screen name={'new'} component={NewPasswordScreen} />
+        <Stack.Screen name={'home'} component={HomeScreen} />
+        <Stack.Screen name={'accept'} component={AcceptScreen} />
         <Stack.Screen name={'test'} component={TestScreen} />
         <Stack.Screen name={'west'} component={WestScreen} />
       </Stack.Navigator>

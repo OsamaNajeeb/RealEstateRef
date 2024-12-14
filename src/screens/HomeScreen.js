@@ -13,8 +13,10 @@ import OfferComponent from '../assets/components/OfferComponent';
 import AtlassianLogo from '../assets/svg/atlassianlogo';
 import ExpiredLemonIcon from '../assets/svg/expiredLemon';
 import ShopifyGarbageIcon from '../assets/svg/shopify';
+import {useNavigation} from '@react-navigation/native';
 
 export default function HomeScreen() {
+  const navigation = useNavigation();
   const [showArrow, setShowArrow] = useState(true);
   const scrollViewRef = useRef(null);
 
@@ -27,6 +29,10 @@ export default function HomeScreen() {
     if (scrollViewRef.current) {
       scrollViewRef.current.scrollToEnd({animated: true});
     }
+  };
+
+  const navigateTo = () => {
+    navigation.navigate('logInRE');
   };
 
   return (
@@ -47,7 +53,7 @@ export default function HomeScreen() {
         </View>
 
         <View style={homeStyle.notificationContainer}>
-          <NotificationAlertIcon />
+          <NotificationAlertIcon onPress={navigateTo} />
         </View>
       </View>
       <ScrollView

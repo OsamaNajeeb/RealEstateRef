@@ -2,12 +2,10 @@ import {View, Text} from 'react-native';
 import React from 'react';
 import PurpleGDyIcon from '../svg/purpledynmicbtn';
 
-export default function OfferComponent({
+export default function PostComponent({
   DynamicIcon,
   ReferralName,
   ReferralPrice,
-  hours,
-  mins,
   loanApprovalOne,
   loanApprovalTwo,
   initialTime,
@@ -24,7 +22,11 @@ export default function OfferComponent({
         flex: 0.3,
         padding: 10,
       }}>
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+        }}>
         <View
           style={{
             height: 40,
@@ -59,33 +61,24 @@ export default function OfferComponent({
             justifyContent: 'center',
             alignItems: 'center',
             marginLeft: 'auto',
+            marginBottom: 'auto',
           }}>
           <Text
             style={{
               textAlign: 'right',
-              fontSize: 9,
-              color: 'red',
-              fontFamily: 'Poppins-Italic',
+              fontSize: 10,
+              color: 'blue',
+              fontFamily: 'Poppins-Medium',
             }}>
-            {hours}h {mins}m left
+            {initialTime} hour ago
           </Text>
         </View>
       </View>
       <Text style={{fontSize: 10, marginTop: 10, fontFamily: 'Poppins-Medium'}}>
-        Loan Approved for/Max Purchase Price {'\n'}${loanApprovalOne}/${' '}
+        Loan Approved for/Max Purchase Price {'\n'}${loanApprovalOne}/$
         {loanApprovalTwo}
       </Text>
       <View style={{flexDirection: 'row'}}>
-        <Text
-          style={{
-            color: '#3277DD',
-            marginTop: 5,
-            fontSize: 12,
-            fontFamily: 'Poppins-Medium',
-            flex: 0.7,
-          }}>
-          {initialTime}h ago
-        </Text>
         <View
           style={{
             flexDirection: 'row',
@@ -93,7 +86,7 @@ export default function OfferComponent({
             marginLeft: 'auto',
           }}>
           <View style={{marginHorizontal: 5}}>
-            <PurpleGDyIcon label="Accept" />
+            <PurpleGDyIcon label="Edit" />
           </View>
           <View
             style={{
@@ -112,7 +105,7 @@ export default function OfferComponent({
                 fontFamily: 'Poppins-Regular',
                 color: 'black',
               }}>
-              Decline
+              Delete
             </Text>
           </View>
         </View>
